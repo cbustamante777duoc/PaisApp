@@ -11,11 +11,17 @@ export class PaisService {
   private apiUrl:string ='https://restcountries.eu/rest/v2';
 
   constructor(private http:HttpClient) { }
-  //se pone el tipado que un arreglo de paises
+ 
   buscarPais(termino:string):Observable<Country[]>{
     
     const url = `${this.apiUrl}/name/${termino}`;
   //se pone el tipado que un arreglo de paises
+    return this.http.get<Country[]>(url);
+  }
+
+  buscarCapital(termino:string):Observable<Country[]>{
+    //solo cambia el name por el capital
+    const url = `${this.apiUrl}/capital/${termino}`;
     return this.http.get<Country[]>(url);
   }
 }
