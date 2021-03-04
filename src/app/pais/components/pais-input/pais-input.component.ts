@@ -24,17 +24,21 @@ export class PaisInputComponent implements OnInit {
   ngOnInit(){
     this.debouncer
     .pipe(
+      //espera 300 ms lo que escriba la persona y lo recibe
       debounceTime(300)
     )
+    //envia el valor de lo que recibe en el input
     .subscribe(valor=>{
       this.onDebounce.emit(valor);
     });
   }
 
+  //emite el valor del termino
   buscar(){
     this.onEnter.emit(this.termino);
   }
 
+  //envia el valor(pais o la capital)
   teclaPresionada(){
     this.debouncer.next(this.termino);
   }

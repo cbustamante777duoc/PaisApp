@@ -12,16 +12,23 @@ export class PaisService {
 
   constructor(private http:HttpClient) { }
  
+  //metodo que trae todos los paises con el termino de busqueda
   buscarPais(termino:string):Observable<Country[]>{
-    
     const url = `${this.apiUrl}/name/${termino}`;
-  //se pone el tipado que un arreglo de paises
     return this.http.get<Country[]>(url);
   }
 
+  //metodo que trae las capitales por el termino de busqueda
   buscarCapital(termino:string):Observable<Country[]>{
     //solo cambia el name por el capital
     const url = `${this.apiUrl}/capital/${termino}`;
     return this.http.get<Country[]>(url);
+  }
+
+ // metodo que trae el pais por codigo alpha al final de la url
+  getPaisPorALPHA(id:string):Observable<Country>{
+    //solo cambia el name por el capital
+    const url = `${this.apiUrl}/alpha/${id}`;
+    return this.http.get<Country>(url);
   }
 }
